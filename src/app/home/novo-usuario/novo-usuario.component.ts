@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NovoUsuarioService } from '../shared/services/novo-usuario.service';
-import { tap, take } from 'rxjs/operators';
+import { tap, take, catchError } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovoUsuario } from '../shared/model/novo-usuario';
 import { minusculoValidator } from '../shared/validator/minusculo.validator';
+import { confirmarSenhaIguaisValidator } from '../shared/validator/confirmar-senha-iguais.validator';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -15,15 +18,20 @@ export class NovoUsuarioComponent implements OnInit {
 
   constructor(private novoUsuarioService: NovoUsuarioService,
       private formBuilder: FormBuilder,
+      private router: Router,
     ) { }
 
   ngOnInit(): void {
     this.novoUsuarioForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', [Validators.required, Validators.minLength(4)]],
-      userName: ['', [minusculoValidator,
-        this.novoUsuarioService.usuarioJaExiste()]],
-      password: ['', [Validators.required]]
+      userName: ['', [minusculoValidator], [this.novoUsuarioService.usuarioJaExiste()], 'blur'],
+      password: ['', [Validators.required]],
+      confirmPassword: [''] 
+    },
+    {// Validação para o Formulario
+      validators: [confirmarSenhaIguaisValidator],
+      updateOn: 'blur' // para chamadas assincronas o uso do updateOn é importante para a performace e numero de requisições 'change' | 'blur' | 'submit';
     });
   }
 
@@ -32,7 +40,8 @@ export class NovoUsuarioComponent implements OnInit {
     this.novoUsuarioService.cadastrarNovoUsuario(novoUsuario)
     .pipe(
       take(1),
-      tap(x => x)
+      tap(() => this.router.navigate([''])),
+      catchError(x => of(x))
     ).subscribe();
   }
 

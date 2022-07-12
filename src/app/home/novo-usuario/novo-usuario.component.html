@@ -16,6 +16,9 @@
     <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.hasError('required') &&
     novoUsuarioForm.get('fullName')?.touched" [mensagem]="'Email obrigatorio'"></app-mensagem>
 
+    <!-- Adicionar load ao input enquanto a requisição não finaliza  Ex:
+        <div [ngClass]="{'is-loading':novoUsuarioForm.controls['username'].pending }" class="control"> 
+    -->
     <div class="form__group">
         <input type="text" placeholder="Usuário" formControlName="userName" class="form__control">
     </div>
@@ -34,9 +37,13 @@
     novoUsuarioForm.get('password')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
 
     <div class="form__group">
-        <input type="password" placeholder="Confirmar Senha" class="form__control">
+        <input type="password" placeholder="Confirmar Senha" formControlName="confirmPassword" class="form__control">
     </div>
-    <app-mensagem [mensagem]="'Email obrigatorio'"></app-mensagem>
+    <app-mensagem *ngIf="novoUsuarioForm.get('confirmPassword')?.hasError('required') &&
+    novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
+    <app-mensagem *ngIf="novoUsuarioForm?.hasError('senhasIguais') &&
+    novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senhas devem ser iguais'"></app-mensagem>
+
 
     <button [disabled]="form.invalid" type="submit" class="form__botao">Cadastrar</button>
 </form>
