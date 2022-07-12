@@ -1,0 +1,19 @@
+<header class="sticky-top">
+    <nav class="cabecalho">
+        <a href="" class="cabelho__usuario">Usuario</a>
+        <div *ngIf="user$ | async as user">
+            <div *ngIf="user.name; else login">
+                <i class="fa fa-user-circle"></i>
+                <a> {{ user.name }} </a>
+                <a (click)="logout()">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <ng-template #login>
+        <span>
+            <a [routerLink]="['']">Login</a>
+        </span>
+    </ng-template>
+    
+</header>
