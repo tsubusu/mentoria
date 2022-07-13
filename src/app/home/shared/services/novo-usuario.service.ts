@@ -3,20 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { NovoUsuario } from '../model/novo-usuario';
 import { take, map, Observable, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NovoUsuarioService {
-  private url = 'http://localhost:3000/user/';
   constructor(private http: HttpClient) { }
 
   public cadastrarNovoUsuario(novoUsuario: NovoUsuario): Observable<any> {
-    return this.http.post<Observable<any>>(`${this.url}signup`, novoUsuario);
+    return this.http.post<Observable<any>>(`${environment.apiURL}/user/signup`, novoUsuario);
   }
 
   public verificarUsuarioExiste(usuario: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.url}exists/${usuario}`);
+    return this.http.get<boolean>(`${environment.apiURL}/user/exists/${usuario}`);
   }
 
   public usuarioJaExiste(): AsyncValidatorFn  {

@@ -1,0 +1,15 @@
+<div *ngIf="animal$ | async as animal">
+    <div>
+        <div>
+            <app-animal [url]="animal.url" [descricao]="animal.description"></app-animal>
+        </div>
+    </div>
+    <div>
+        <small>
+            <p> {{ animal.description }} </p>
+            <i (click)="curtir()" class="fa fa-heart-o fa-2x">{{ animal.likes }}</i>
+            <i class="fa fa-comment-o fa-2x">{{ animal.comments }}</i>
+            <i (click)="excluir()" class="fa fa-trash-o fa-2x"></i>
+        </small>
+    </div>
+</div>

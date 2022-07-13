@@ -3,17 +3,25 @@ import { CommonModule } from '@angular/common';
 
 import { AnimaisRoutingModule } from './animais-routing.module';
 import { ListaAnimaisComponent } from './lista-animais/lista-animais.component';
+import { AnimalComponent } from './animal/animal.component';
+import { CartaoModule } from '../componentes/cartao/cartao.module';
+import { GradeFotoAnimaisComponent } from './grade-foto-animais/grade-foto-animais.component';
+import { DetalheAnimalComponent } from './detalhe-animal/detalhe-animal.component';
 
 
 
 @NgModule({
   declarations: [
   
-    ListaAnimaisComponent
+    ListaAnimaisComponent,
+       AnimalComponent,
+       GradeFotoAnimaisComponent,
+       DetalheAnimalComponent
   ],
   imports: [
     CommonModule,
-    AnimaisRoutingModule
+    AnimaisRoutingModule,
+    CartaoModule,
   ]
 })
 export class AnimaisModule { }

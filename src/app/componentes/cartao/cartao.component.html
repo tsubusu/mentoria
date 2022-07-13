@@ -1,0 +1,20 @@
+<!-- 
+    ng-content -> O Angular tem uma diretiva padrão chamada ng-content,
+    que serve para isso, para eu projetar conteúdo. 
+    Para eu utilizar é muito simples, essa diretiva já é 
+    importada por padrão, não precisamos importar nenhum 
+    módulo do Angular, React form, nada disso. E basicamente, 
+    onde eu quero que o conteúdo seja projetado, no caso, dentro
+    dessa div, eu vou colocar aqui ng-content
+    Angular vai projetar o conteúdo nesse ponto, 
+    muito parecido com o router outlet
+-->
+
+<div class="cartao">
+    <h4 class="cartao__titulo" *ngIf="titulo">
+        {{ titulo }}
+    </h4>
+    <div class="cartao__block">
+        <ng-content></ng-content>
+    </div>
+</div>
