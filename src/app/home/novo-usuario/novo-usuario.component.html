@@ -1,51 +1,57 @@
-<h4 class="">Registre-se e mostre seu pet ao mundo!</h4>
+<main>
+    <h4 class="">Registre-se e mostre seu pet ao mundo!</h4>
 
-<form action="" class="form" [formGroup]="novoUsuarioForm" (submit)="cadastrar()" #form="ngForm">
-    <div class="form__group">
-        <input type="email" placeholder="email" formControlName="email" class="form__control">
-    </div>
-    <!-- Safe Navigation é o ?.-->
-    <app-mensagem *ngIf="novoUsuarioForm.get('email')?.hasError('required') &&
-    novoUsuarioForm.get('email')?.touched" [mensagem]="'Email obrigatorio'"></app-mensagem>
-    <app-mensagem *ngIf="novoUsuarioForm.get('email')?.hasError('email') &&
-    novoUsuarioForm.get('email')?.touched" [mensagem]="'Email formato incorreto'"></app-mensagem>
-
-    <div class="form__group">
-        <input type="text" placeholder="Nome Completo" formControlName="fullName" class="form__control">
-    </div>
-    <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.hasError('required') &&
-    novoUsuarioForm.get('fullName')?.touched" [mensagem]="'Email obrigatorio'"></app-mensagem>
-
-    <!-- Adicionar load ao input enquanto a requisição não finaliza  Ex:
-        <div [ngClass]="{'is-loading':novoUsuarioForm.controls['username'].pending }" class="control"> 
-    -->
-    <div class="form__group">
-        <input type="text" placeholder="Usuário" formControlName="userName" class="form__control">
-    </div>
-    <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.hasError('required') &&
-    novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário obrigatorio'"></app-mensagem>
-    <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.hasError('minusculo') &&
-    novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário deve ser minusculo'"></app-mensagem>
-    <app-mensagem *ngIf="novoUsuarioForm?.get('userName')?.hasError('usuarioExistente') &&
-    novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário ja existe'"></app-mensagem>
-
-
-    <div class="form__group">
-        <input type="password" (click)="geterror()" placeholder="Senha" formControlName="password" class="form__control">
-    </div>
-    <app-mensagem *ngIf="novoUsuarioForm.get('password')?.hasError('required') &&
-    novoUsuarioForm.get('password')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
-
-    <div class="form__group">
-        <input type="password" placeholder="Confirmar Senha" formControlName="confirmPassword" class="form__control">
-    </div>
-    <app-mensagem *ngIf="novoUsuarioForm.get('confirmPassword')?.hasError('required') &&
-    novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
-    <app-mensagem *ngIf="novoUsuarioForm?.hasError('senhasIguais') &&
-    novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senhas devem ser iguais'"></app-mensagem>
-
-
-    <button [disabled]="form.invalid" type="submit" class="form__botao">Cadastrar</button>
-</form>
-
-<p>Já é usuário? <a [routerLink]="''">Faça o Login!</a></p>
+    <form action="" class="form" [formGroup]="novoUsuarioForm" (submit)="cadastrar()" #form="ngForm">
+        <div class="form__group">
+            <input type="email" placeholder="email" formControlName="email" class="form__group__control">
+        </div>
+        <!-- Safe Navigation é o ?.-->
+        <app-mensagem *ngIf="novoUsuarioForm.get('email')?.hasError('required') &&
+        novoUsuarioForm.get('email')?.touched" [mensagem]="'Email obrigatorio'"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('email')?.hasError('email') &&
+        novoUsuarioForm.get('email')?.touched" [mensagem]="'Email formato incorreto'"></app-mensagem>
+    
+        <div class="form__group">
+            <input type="text" placeholder="Nome Completo" formControlName="fullName" class="form__group__control">
+        </div>
+        <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.hasError('required') &&
+        novoUsuarioForm.get('fullName')?.touched" [mensagem]="'Email obrigatorio'"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.hasError('minlength') &&
+        novoUsuarioForm.get('fullName')?.touched" [mensagem]="'Tamanho minimo 4'"></app-mensagem>
+    
+        <!-- Adicionar load ao input enquanto a requisição não finaliza  Ex:
+            <div [ngClass]="{'is-loading':novoUsuarioForm.controls['username'].pending }" class="control"> 
+        -->
+        <div class="form__group">
+            <input type="text" placeholder="Usuário" formControlName="userName" class="form__group__control">
+        </div>
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.hasError('required') &&
+        novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário obrigatorio'"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.hasError('minusculo') &&
+        novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário deve ser minusculo'"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm?.get('userName')?.hasError('usuarioExistente') &&
+        novoUsuarioForm.get('userName')?.touched" [mensagem]="'Usuário ja existe'"></app-mensagem>
+    
+    
+        <div class="form__group">
+            <input type="password" (click)="geterror()" placeholder="Senha" formControlName="password" class="form__group__control">
+        </div>
+        <app-mensagem *ngIf="novoUsuarioForm.get('password')?.hasError('required') &&
+        novoUsuarioForm.get('password')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
+    
+        <div class="form__group">
+            <input type="password" placeholder="Confirmar Senha" formControlName="confirmPassword" class="form__group__control">
+        </div>
+        <app-mensagem *ngIf="novoUsuarioForm.get('confirmPassword')?.hasError('required') &&
+        novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senha obrigatorio'"></app-mensagem>
+        <app-mensagem *ngIf="novoUsuarioForm?.hasError('senhasIguais') &&
+        novoUsuarioForm.get('confirmPassword')?.touched" [mensagem]="'Senhas devem ser iguais'"></app-mensagem>
+    
+        <div class="form__group">
+            <button [disabled]="form.invalid" type="submit" class="form__group__button">Cadastrar</button>
+        </div>
+        
+    </form>
+    
+    <p>Já é usuário? <a [routerLink]="''">Faça o Login!</a></p>
+</main>

@@ -1,19 +1,23 @@
-<h4>Login</h4>
+<main>
+    <h4>Login</h4>
 
-<form class="form" (ngSubmit)="login()" #loginForm="ngForm">
-    <div class="form__group">
-        <input type="text" placeholder="Nome do Usuário" class="form__control"
-        [(ngModel)]="usuario.usuario" name="usuario" #campoUsuario="ngModel" required>
-    </div>
-    <app-mensagem *ngIf="campoUsuario.invalid && campoUsuario.touched" [mensagem]="'Usuario Obrigatorio'"></app-mensagem>
-
-    <div class="form__group">
-        <input type="password" placeholder="Senha" class="form__control"
-        [(ngModel)]="usuario.senha" name="senha" #campoSenha="ngModel" required>
-    </div>
-    <app-mensagem *ngIf="campoSenha.invalid && campoSenha.touched" [mensagem]="'Senha Obrigatorio'"></app-mensagem>
-
-    <button [disabled]="loginForm.invalid" type="submit" class="form__button">Login</button>
-</form>
-
-<p>Não é usuário? <a [routerLink]="'novousuario'">Se Cadastre!</a></p>
+    <form class="form" (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="form__group">
+            <input type="text" placeholder="Nome do Usuário" class="form__group__control"
+            [(ngModel)]="usuario.usuario" name="usuario" #campoUsuario="ngModel" required>
+        </div>
+        <app-mensagem *ngIf="campoUsuario.invalid && campoUsuario.touched" [mensagem]="'Usuario Obrigatorio'"></app-mensagem>
+    
+        <div class="form__group">
+            <input type="password" placeholder="Senha" class="form__group__control"
+            [(ngModel)]="usuario.senha" name="senha" #campoSenha="ngModel" required>
+        </div>
+        <app-mensagem *ngIf="campoSenha.invalid && campoSenha.touched" [mensagem]="'Senha Obrigatorio'"></app-mensagem>
+    
+        <div class="form__group">
+            <button [disabled]="loginForm.invalid" type="submit" class="form__group__button">Login</button>
+        </div>
+    </form>
+    
+    <p>Não é usuário? <a [routerLink]="'novousuario'">Se Cadastre!</a></p>
+</main>

@@ -1,0 +1,20 @@
+<!--
+    ngClass é bem interessante porque ela recebe um objeto 
+    e esse objeto é como se fossem os condicionais, é como se 
+    fosse um switch dentro do nosso template.
+
+    Eu quero fazer o seguinte, entre aspas, eu quero que a classe 
+    ”{’active-menu’ apareça mediante a variável : mostraMenu}”. 
+    Então é um switch, é um if. Se mostraMenu está true, 
+    essa classe está na minha div, se está false, 
+    essa classe não está mais na div
+-->
+
+<div [ngClass]="{'active-menu': mostrarMenu}">
+    <div class="menu-bar">
+        <i class="fa fa-window-close" (click)="abrirMenu()" (keyup)="abrirMenu()"></i>
+        <ng-content></ng-content>
+    </div>
+
+    <div class="overlay" (click)="abrirMenu()"></div>
+</div>

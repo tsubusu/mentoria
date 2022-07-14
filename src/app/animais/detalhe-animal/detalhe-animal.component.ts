@@ -13,7 +13,7 @@ import { first, tap } from 'rxjs/operators';
 export class DetalheAnimalComponent implements OnInit {
   public animal$!: Observable<Animal>;
   
-  private animalID!: number;
+  public animalID!: number;
 
   constructor(private animalService: AnimaisService,
       private activatedRoute: ActivatedRoute,

@@ -6,6 +6,11 @@
     Ele vai atribuir o que está dentro do observable nessa variável animais
 -->
 
-<div *ngIf="animais$ | async as animais">
+
+<!-- atualização de como receber a lista de animais, agr recebe pelo resolver que fica na rota de animais
+    <div *ngIf="animais$ | async as animais">
     <app-grade-foto-animais [animais]="animais"></app-grade-foto-animais>
-</div>
+</div> -->
+
+
+<app-grade-foto-animais [animais]="animais"></app-grade-foto-animais>

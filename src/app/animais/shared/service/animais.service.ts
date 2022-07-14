@@ -47,4 +47,27 @@ export class AnimaisService {
       })
     );
   }
+
+  /*
+   FormData() => Para conseguirmos enviar o arquivo pela requisição nós precisamos empacotá-lo num objeto JavaScript chamado formData
+   que nos permite incluir arquivos binários na nossa requisição.
+
+   observe: 'events' => Para conseguirmos observar o progresso da nossa requisição, nós vamos utilizar o objeto de opções do HttpClient 
+   e vamos setar que o { observe:, eu quero observar os ’eventos’
+
+   reportProgress: true => Então eu não quero o response, eu quero os eventos, então cada passo da requisição eu quero receber no nosso observable,
+   eu quero que ele me envie. Então observe: ‘events’ e reportProgress: true,
+  */
+
+  public upload(descricao: string, permiteComentario: boolean, arquivo: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('description', descricao);
+    formData.append('allowComments', permiteComentario ? 'true' : 'false');
+    formData.append('imageFile', arquivo);
+
+    return this.http.post(`${environment.apiURL}/photos/upload`, formData, {
+      observe: 'events',
+      reportProgress: true
+    })
+  }
 }

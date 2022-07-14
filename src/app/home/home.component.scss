@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+    grid-template-areas: 'home rotas';
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 75px - 75px);
+    &__home {
+       grid-area: home;
+       text-align: center;
+       display: flex;
+       align-items: center;
+       width: 100%;
+    }
+    &__col {
+        width: 100%;
+        &__gato {
+        }
+    }
+    &__rotas {
+        display: grid;
+        align-content: center;
+        grid-area: rotas;
+    }
+}

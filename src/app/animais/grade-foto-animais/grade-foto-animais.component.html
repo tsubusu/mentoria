@@ -3,13 +3,15 @@
 <!-- 
     aria-hidden="true" para não ser lido por leitores de tela
  -->
-<div>
+<div class="pagina">
     <div *ngFor="let animal of animais">
         <a [routerLink]="['/animais', animal.id]">
-            <app-cartao>
+            <app-cartao [titulo]="'teste'">
                 <app-animal [url]="animal.url" [descricao]="animal.description"></app-animal>
-                <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"> {{ animal.likes }} </i>
-                <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2"> {{ animal.comments }} </i>
+                <div class="like__comment">
+                    <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"> {{ animal.likes }} </i>
+                    <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2"> {{ animal.comments }} </i>
+                </div>
             </app-cartao>
         </a>
     </div>
