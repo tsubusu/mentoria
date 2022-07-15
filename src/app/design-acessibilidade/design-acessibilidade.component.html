@@ -1,0 +1,29 @@
+<!-- 
+    Diferencas entre usar ngSubmit e submit
+    ngSubmit = não faz refresh na pagina já o submit sim
+-->
+
+<!-- 
+    app-yes-no-button-group  virou um componente acessivel tanto pelo ngModel quanto para o formControlName atraves do ControlValueAccessor
+    ele se torna um componente 'nativo'
+-->
+<main>
+    <h1>Form</h1>
+    <!-- Exemplo para template driven -->
+    <app-yes-no-button-group 
+        [(ngModel)]="teste"
+        label="Are you good enough in Angular?">
+    </app-yes-no-button-group>
+    <span>{{ teste }}</span>
+
+    ----------------------------------------------------------
+    <!-- Exemplo para react Form -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <app-yes-no-button-group
+            formControlName="yesNoAnswer"
+            label="Are you good enough in Angular?"
+        >
+        </app-yes-no-button-group>
+        <button>Submit</button>
+    </form>
+</main>

@@ -5,7 +5,10 @@ import { LoginGuard } from './autenticacao/login.guard';
 
 const routes: Routes = [
   {
-    path:'',
+    path: 'acessibilidade', loadChildren: () => import('./design-acessibilidade/design-acessibilidade.module').then((m) => m.DesignAcessibilidadeModule),
+  },
+  {
+    path:'home',
     pathMatch:'full', //retira os espacos em branco
     redirectTo: 'home'
   },

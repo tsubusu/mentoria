@@ -1,0 +1,15 @@
+:host *::ng-deep {
+    --font-color-black: #272c3f;
+    --color-button: #aeb6c6;
+    /*box-sizing, se tenho um elemento que o tamanho dele, a altura, tamanho total da caixa é 30x30, se aumentar a largura da borda ele vai continuar sendo 30x30.
+     Estou trocando do padrão que é o content-box*/
+    box-sizing: border-box; 
+    font-family: 'Open Sans', sans-serif;
+    color: var(--font-color-black);
+}
+
+:host main::ng-deep { //Toda vez que um elemento esta em focus ele ficara com as bordas em laranja
+    :focus {
+        outline:  2px solid orange;
+    }
+}
