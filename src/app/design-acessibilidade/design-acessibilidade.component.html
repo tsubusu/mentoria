@@ -6,9 +6,13 @@
 <!-- 
     app-yes-no-button-group  virou um componente acessivel tanto pelo ngModel quanto para o formControlName atraves do ControlValueAccessor
     ele se torna um componente 'nativo'
+
+    --- disabled input  aria-disabled  ---
+    O elemento é completamente ignorado por screen readers, inclusive não pode receber foco através do teclado.
+    Dica: se você precisa de um botão que esteja desabilitado mas que ainda possa ganhar foco, utilize o atributo aria-disabled. Screen readers irão anunciar o elemento como disabled, mas lembre-se: você precisará garantir que a ação do botão só seja disparada quando ele estiver habilitado novamente, geralmente no método chamado pelo botão.
 -->
 <main>
-    <h1>Form</h1>
+    <h1>Form - componente personalizado pensando em acessibilidade</h1>
     <!-- Exemplo para template driven -->
     <app-yes-no-button-group 
         [(ngModel)]="teste"
@@ -20,10 +24,23 @@
     <!-- Exemplo para react Form -->
     <form [formGroup]="form" (ngSubmit)="submit()">
         <app-yes-no-button-group
+            [appDisableControl]="false"
             formControlName="yesNoAnswer"
             label="Are you good enough in Angular?"
         >
         </app-yes-no-button-group>
+
+        <br>
+
+        <app-yes-no-radio-button-group
+        [appDisableControl]="true"
+        label="Are you good enough in Angular?"
+        lang="en"
+        formControlName="yesNoAnswer1">
+            
+        </app-yes-no-radio-button-group>  
+
         <button>Submit</button>
     </form>
+
 </main>

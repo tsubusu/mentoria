@@ -8,6 +8,9 @@ const routes: Routes = [
     path: 'acessibilidade', loadChildren: () => import('./design-acessibilidade/design-acessibilidade.module').then((m) => m.DesignAcessibilidadeModule),
   },
   {
+    path: 'acessibilidade2', loadChildren: () => import('./design-acessibilidade2/design-acessibilidade2.module').then((m) => m.DesignAcessibilidade2Module),
+  },
+  {
     path:'home',
     pathMatch:'full', //retira os espacos em branco
     redirectTo: 'home'

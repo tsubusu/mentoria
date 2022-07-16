@@ -5,6 +5,8 @@ import { DesignAcessibilidadeRoutingModule } from './design-acessibilidade-routi
 import { YesNoButtonGroupModule } from '@shared/componentes/yes-no-button-group/yes-no-button-group.module';
 import { SharedModule } from '@shared/module/shared.module';
 import { FormsModule } from '@angular/forms';
+import { DisableControlModule } from '@shared/directive/disable-control/disable-control.module';
+import { YesNoRadioButtonGroupModule } from '@shared/componentes/yes-no-radio-button-group/yes-no-radio-button-group.module';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { FormsModule } from '@angular/forms';
     DesignAcessibilidadeRoutingModule,
     YesNoButtonGroupModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    DisableControlModule,
+    YesNoRadioButtonGroupModule
   ]
 })
 export class DesignAcessibilidadeModule { }

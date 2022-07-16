@@ -1,0 +1,78 @@
+<!--
+    A nossa API do nosso modal é o seguinte, o modal.component, que é o componente, ele vai ser criado dinamicamente através do modal.service. 
+    Quando eu falo criado dinamicamente, significa que não vamos ter esse modal em nenhum momento da aplicação poderemos fazer isso <app-modal></app-modal>. 
+    Ele vai ser criado dinamicamente.
+
+    Componente com acessibilidade parte 2. Nesse treinamento que vamos trabalhar agora é com modal. Nós vamos criar um modal 100% acessível utilizando as regras da double CAD.
+    Ao acessar o modal, eu abro o meu modal, dentro dele eu tenho algumas validações, algumas regras. O importante é que eu tenho que aplicar várias regras, uma delas eu tenho que aplicar o focus trap para manter o foco quando aperto a tecla “Tab” ou “Shift + Tab”, manter dentro do meu modal. quando eu cancelo meu modal, eu tenho que voltar o foco para o botão que disparou o modal e eu tenho que tornar o meu modal acessível em tax readers. Se eu ligo agora o meu Chrome Vox.
+    a questão toda desse treinamento é, a questão desse modal vai ser bem atípica, porque vamos usar recursos sofisticados no angular, como criação dinâmica de componente, vamos entender o papel do Application Ref, do hostview, ou seja, todo o design dessa API’s modal vai ser criado primeiro nós começando definindo a API do nosso modal e depois implementando
+    Como aplicar diretivas de uma maneira elegante, para isolar questões de manipulação de DOM, para lidar com teclado
+
+    Não utilizaremos o componente ModalComponent através da sua forma declarativa app-modal. O componente será criado dinamicamente através do serviço ModalService que será o responsável em inserir o componente na view.
+
+    Tudo que está dentro do </ng-template> não vai ser processado pelo angular. A angular não vai processar isso, não vai criar elemento no DOM para isso, ele vai estar guardado para no momento posterior, se você precisar, você usar esse template para fazer alguma coisa.
+-->
+<main>
+    <h1>Accessible modal component</h1>
+
+    <p>Welcme to the accessible modal testing page!</p>
+    <button class="button button-primary" 
+        type="button"
+        (click)="show()">
+        Show Modal
+    </button>
+
+    <button class="button button-primary" 
+        type="button"
+        (click)="testeExibicaoTemplates()">
+        Teste exibicao templates
+    </button>
+
+    <ng-template #modal>
+        <div class="form-field">
+            <label for="firstName">firstName</label>
+            <input id="firstName" type="text" [(ngModel)]="firstName">
+        </div>
+        
+        <div class="form-field">
+            <label for="surname">surname</label>
+            <input id="surname" type="text">
+        </div>
+        
+        <div class="form-field">
+            <label for="age">age</label>
+            <input id="age" type="text">
+        </div>
+        
+        <div class="button-group">
+            <button class="button button-primary" type="button">Submit</button>
+            <button class="button button-secondary" 
+            type="button"
+            (click)="modalRef.close()">
+                Cancel
+            </button>
+        </div>
+    </ng-template>
+
+
+    <!-- Exemplos da funcionalidade do *ngTemplateOutlet -->
+    <!-- 
+        Para o exemplo é exibido o erro no log
+        ERROR Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'undefined'. Current value: '[object Object]'. Find more at https://angular.io/errors/NG0100
+        O que está acontecendo. E esse valor que estamos vendo do lado direito da tela, essa reclamação que estamos vendo do Angular, 
+        é que durante o modo desenvolvedor, estamos mudando um valor da view depois dela ser inicializada. 
+        Como resolvemos isso?  
+        é injetar o private cd: ChangeDetectorRef do angular e depois que eu mudar o valor no AfterViewInit, 
+        eu falo para o angular detectar mais um ciclo de mudança. Isso não tem a ver, O que está acontecendo é que eu estou mudando o valor de um valor da view no AfterViewInit depois dela ter sido inicializada
+    -->
+    <ng-template #template1>
+        <p>I am template 1</p>
+    </ng-template>
+    
+    <ng-template #template2>
+        <p>I am template 2</p>
+    </ng-template>
+
+    <ng-content *ngTemplateOutlet="selectedTemplate"></ng-content>
+    
+</main>

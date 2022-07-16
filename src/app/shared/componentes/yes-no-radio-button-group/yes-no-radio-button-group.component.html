@@ -1,0 +1,34 @@
+<!-- 
+
+Agora vamos ver em questões de acessibilidade. Está funcionando perfeito, a acessibilidade total. Então vem aquela mega ultra reflexão, que era se tivéssemos desde o início implementado esse componente usando um input radio, não teríamos que implementar as diretivas KeyboardManager, não teríamos que cuidar de muita questão de estado do componente, ou seja, nosso código ficaria mais enxuto e já teríamos acessibilidade praticamente com poucos ajustes para fazer.
+
+[12:30] No caso do button group, com ele a label, algo acessível, isso é para mostrar de novo que bem começado, metade feito. Antes de você criar seus componentes tenta ao máximo utilizar as tags padrões do html porque todo leitor text reader já está preparado para lidar com eles.
+
+[12:52] Mas também abre seu coração, porque muitas vezes você não vai conseguir, você vai ter que enfrentar algum problema, ou algum problema de estilização dentro de um ngFor, ou alguma dinâmica do seu componente que não lhe permite usar as tags padrões. Um exemplo é o angular material.
+
+-->
+
+<div 
+    class="button__group"
+    role="radiogroup"
+    [attr.aria-label]="label">
+    <label> {{label}} </label>
+    <div class="radio">
+        <input type="text" 
+        type="radio"
+        [attr.name]="id+'-yes'"
+        [attr.checked]="value === options.YES"
+        (change)="activate(options.YES)"/>
+        <label [attr.for]="id+ '-yes'"
+        class="button button--yes"> Yes </label>
+    </div>
+    <div class="radio">
+        <input type="text" 
+        type="radio"
+        [attr.name]="id+ '-no'"
+        [attr.checked]="value === options.NO"
+        (change)="activate(options.NO)"/>
+        <label [attr.for]="id+ '-no'"
+        class="button button--no"> No </label>
+    </div>
+</div>

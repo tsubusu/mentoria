@@ -1,13 +1,61 @@
-<div class="button-group">
-    <label class="label" for="">
+<!-- 
+    https://www.w3.org/WAI/standards-guidelines/wcag/ -> padrão para acessibilidade na Web
+    
+    role="radiogroup" -> torna todo o conteudo um 'radio group'
+    aria-labelledby="label" -> sera lido o texto dentro de label quando o a div com role="radiogroup" estiver em focu
+    role="radio" -> identificar qual o tipo do botão
+
+    [attr.aria-checked] => Porque quando você quer fazer data binding com atributos do ARIA, como esses atributos são propriedades, são atributos do elemento, você tem que usar o [attr.aria-checked], fica ligado nisso, porque você está setando um atributo, então coloco o attr, ponto, o nome do atributo. E adiciono minha lógica
+    attr. => transforma uma propriedade do html possivel de receber variaveis
+
+
+    ----- Gerar ids unicos ------
+    npm install uuid@8.3.0. Essa biblioteca me gera um id único que tenho certeza que toda vez que eu chamar essa biblioteca ela vai gerar um id único para mim
+
+    Para garantirmos que apenas um elemento do meu radio ativo deve ganhar o foco quando eu entrar dentro desse elemento, tenho que garantir que ele é focável e o outro que não está marcado não ganha o foco
+    tabindex, por exemplo, se você ler um input, um elemento de entrada, os elementos de input já ganham foco por padrão, é como se tivesse um tabindex 0
+    O que é tabindex 0? Se um elemento que não foi preparado para ganhar foco através do teclado, ou seja, usar o teclado para ele ganhar foco, se eu coloco tabindex 0, ele passa a ganhar foco.
+
+    ----- Output dentro de Directivas ----
+    A diretiva appKeyboardManagerItem pode responder ao evento focused. O que vou fazer quando ele for focado? Vou querer fazer a mesma coisa de quando ele é aplicado e vou chamar o activate
+
+    ----- disabled -----
+    disabled -> o text reader ignora o campo totalmente.
+    [attr.disbled]="disabled" não usar
+    [attr.disbled]="disabled ? disabled : null" usar este modo
+    disabled é true, vou retornar disabled. Se ele é falso, vou retornar null. O null quando é retornado em um binding de atributo, ignora e não cria o atributo para você. Ficou claro? Se aqui fosse false, por exemplo, ele criaria o atributo para nós. Não quero.
+    Coloca isso na sua mente. Numa atribuição, em um binding para uma propriedade, um atributo de um elemento, se você retorna null significa que você não quer colocar essa propriedade no elemento
+
+     --- disabled input  aria-disabled  ---
+    O elemento é completamente ignorado por screen readers, inclusive não pode receber foco através do teclado.
+    Dica: se você precisa de um botão que esteja desabilitado mas que ainda possa ganhar foco, utilize o atributo aria-disabled. Screen readers irão anunciar o elemento como disabled, mas lembre-se: você precisará garantir que a ação do botão só seja disparada quando ele estiver habilitado novamente, geralmente no método chamado pelo botão.
+
+-->
+<div role="radiogroup" 
+    [attr.aria-labelledby]="id+ '-radio'"
+    appKeyboardManager
+    class="button-group"> 
+    <label [attr.id]="id+ '-radio'" class="label" for="" lang="en">
         {{ label }}
     </label>
-    <button class="button button--yes" 
+    <button 
+        role="radio"
+        [attr.tabindex]="value === options.YES || !value ? 0 : -1"
+        [attr.aria-checked]="value === options.YES"
+        [attr.aria-disabled]="disabled ? disabled : null"
+        appKeyboardManagerItem (focused)="activate(options.YES)"
+        class="button button--yes" 
         (click)="activate(options.YES)" 
         [class.button--pressed]="value === options.YES"
         type="button"> Yes 
     </button>
-    <button class="button button--no" 
+    <button 
+        role="radio"
+        [attr.tabindex]="value === options.NO ? 0 : -1"
+        [attr.aria-checked]="value === options.NO"
+        [attr.disabled]="disabled ? disabled : null"
+        appKeyboardManagerItem (focused)="activate(options.NO)"
+        class="button button--no" 
         (click)="activate(options.NO)" 
         [class.button--pressed]="value === options.NO"
         type="button"> No 

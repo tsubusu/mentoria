@@ -1,0 +1,14 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+        <h1 class="modal-title"> {{ modalConfig.title }} </h1>
+        <!-- conteudo do modal. template q quero exibir -->
+
+        <!-- 
+            <ng-container> e ela vai ter a diretiva *ngTemplateOutlet que eu vou apontar para ”config.templateRef”. Então aqui a coisa começa a se encaixar no mundo do angular. Meu modal vai receber o ModalConfig, desse ModalConfig, quando o modal que está sendo criado for exibido na tela, ele vai exibir o título, vai exibir também logo abaixo dele o template que você deseja exibir dentro dele.
+            E como é que o angular consegue pegar um template e exibir? Criar elementos do DOM para esse tipo de template? É através da diretiva *ngTemplateOutlet
+        -->
+        <ng-container *ngTemplateOutlet="modalConfig.templateRef">
+        </ng-container>
+        
+    </div>
+</div>

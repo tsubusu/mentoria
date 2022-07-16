@@ -21,9 +21,9 @@ uuid => Gera ids unicos na aplicação
 */
 
 @Component({
-  selector: 'app-yes-no-button-group',
-  templateUrl: './yes-no-button-group.component.html',
-  styleUrls: ['./yes-no-button-group.component.scss'],
+  selector: 'app-yes-no-radio-button-group',
+  templateUrl: './yes-no-radio-button-group.component.html',
+  styleUrls: ['./yes-no-radio-button-group.component.scss'],
   /*
   Estou dizendo que vou prover um ControlValueAccessor através desse injection token. 
   Podem ter outros durante a minha aplicação, por isso quero ter multi. 
@@ -40,10 +40,10 @@ uuid => Gera ids unicos na aplicação
       esse registro não existe. Então tenho que jogar para a frente, tenho que ter uma 
       referência que ainda está para existir
     */
-    useExisting: forwardRef(() => YesNoButtonGroupComponent)
+    useExisting: forwardRef(() => YesNoRadioButtonGroupComponent)
   }]
 })
-export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
+export class YesNoRadioButtonGroupComponent  implements OnInit, ControlValueAccessor {
   @Input() public disabled = false;
   @Input() public value!: string;
   @Input() public label = '';
