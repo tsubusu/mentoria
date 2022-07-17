@@ -1,4 +1,5 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, Injector, TemplateRef } from '@angular/core';
+import { BodyInjectorService } from '@shared/service/body-injector.service';
 import { ModalComponent } from '../modal.component';
 
 @Injectable()
@@ -21,7 +22,8 @@ export class ModalService {
   private componentFactory!: ComponentFactory<ModalComponent>;
 
   constructor(componentFactoryResolver: ComponentFactoryResolver,
-      private injector: Injector
+      private injector: Injector,
+      private bodyInjectorService: BodyInjectorService
     ) { 
     this.componentFactory = componentFactoryResolver.resolveComponentFactory(ModalComponent);
   }
@@ -30,12 +32,15 @@ export class ModalService {
     const componentRef = this.createComponentRef();
 
     //o retorno desse ModalRef eu vou guardar em uma variável chamada componentRef. Se você olhar o tipo que ele está te dando, o retorno de create é um componentRef. Nesse momento eu tenho criado no angular o componente, mas ele ainda não faz parte do DOM, ele está desatachado, ele está desconectado do DOM
-    componentRef.instance.modalConfig.templateRef;
+    //componentRef.instance.modalConfig.templateRef;
     //componentRef.instance essa é a instância do componente que está sendo criado. Tanto isso é verdade, que se eu der dot, ele mostrou o modalConfig, title e templateRef. Porque essa instance é o meu modal.component, ele tem a propriedade config
 
     //Então por isso que ele não retorna diretamente a instância que queremos trabalhar. Então está aqui. E por falar aonde eu quero adicionar esse componentRef, eu preciso passar o que para ele como parâmetro primeiro? Eu posso dizer para ele que o documentRefInstance vai receber um config
     componentRef.instance.modalConfig = config;
+    console.log(componentRef.instance);
     console.log('open called');
+
+    this.bodyInjectorService.stackBeforeAppRoot(componentRef);
 
     //Sabemos que o componentRef é um wraper, que dentro dele tem um ModalComponent. Então é verdade que a propriedade instance é a instância de ModalComponent. E através de componentRef.destroy que eu destruo esse componente. Se esse componente estiver na view, a view é destruída junto com ele
     //Então o que está faltando eu fazer agora? É passar o meu componentRef no construtor do meu modal
