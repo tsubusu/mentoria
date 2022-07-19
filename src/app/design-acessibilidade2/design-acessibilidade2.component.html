@@ -29,29 +29,67 @@
     </button>
 
     <ng-template #modal>
-        <div class="form-field">
-            <label for="firstName">firstName</label>
-            <input id="firstName" type="text" [(ngModel)]="firstName">
-        </div>
-        
-        <div class="form-field">
-            <label for="surname">surname</label>
-            <input id="surname" type="text">
-        </div>
-        
-        <div class="form-field">
-            <label for="age">age</label>
-            <input id="age" type="text">
-        </div>
-        
-        <div class="button-group">
-            <button class="button button-primary" type="button">Submit</button>
-            <button class="button button-secondary" 
-            type="button"
-            (click)="modalRef.close()">
-                Cancel
-            </button>
-        </div>
+        <!-- 
+            Vou colocar o (ngSubmit)=”submit”(). Já falei no outro curso que o ngSubmit é bem legal, porque se você tem um crash, algum erro de java script em run time dentro do submit, a sua single page application vai fazer um refresh. E o ngSubmit te blinda para que isso não aconteça. Então a minha recomendação é sempre preferir usar o ngSubmit
+        -->
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-field">
+                <label for="firstName">firstName</label>
+                <input id="firstName" 
+                type="text" 
+                formControlName="firstName"
+                aria-describedby="firstName-error">
+                <!-- 
+                    aria-describedby -> se o erro existir o leitor lerá o valor da span sendo
+                    identificada pelo firstName-error
+                 -->
+                <span 
+                id="firstName-error"
+                *ngIf="form.get('firstName')?.hasError('required')" 
+                [attr.aria-invalid]="form.get('firstName')?.hasError('required')" 
+                class="validation-error">firstName is required</span>
+            </div>
+            
+            <div class="form-field">
+                <label for="surname">surname</label>
+                <input id="surname" formControlName="surname"
+                aria-describedby="surname-error"
+                type="text">
+                <!-- [attr.aria-invalid] o leitor de tela identifica o erro -->
+                <span id="surname-error" *ngIf="form.get('surname')?.hasError('required')"
+                [attr.aria-invalid]="form.get('surname')?.hasError('required')"
+                 class="validation-error">firstName is required</span>
+            </div>
+            
+            <div class="form-field">
+                <label for="age">age</label>
+                <input id="age"
+                aria-describedby="age-error"
+                formControlName="age" type="text">
+                <span id="age-error" *ngIf="form.get('age')?.hasError('required')" 
+                [attr.aria-invalid]="form.get('age')?.hasError('required')"
+                class="validation-error">firstName is required</span>
+            </div>
+    
+    
+            <label for="info">Subscribe to news letter</label>
+            <input type="checkbox" formControlName="info" id="info" (change)="info = !info">
+            <span *ngIf="form.get('info')?.hasError('required')" class="validation-error">firstName is required</span>
+            <p [@fade] *ngIf="info">Para que o efeito de fade funcione é necessário o uso do *ngIf</p>
+            <p [@fade] *ngIf="info">Porque o objeto deve deixar de ser existir no componente para que ele entenda a saida e a entrada do componente no DOM</p>
+            
+            <!-- [attr.aria-disabled] informa ao leitor de tela q o botão esta ou n desabilitado -->
+            <div class="button-group">
+                <button class="button button-primary" 
+                    [attr.aria-disabled]="form.invalid" 
+                    >Submit</button>
+                <button class="button button-secondary" 
+                type="button"
+                (click)="modalRef.close()">
+                    Cancel
+                </button>
+            </div>
+        </form>
     </ng-template>
 
 

@@ -1,0 +1,38 @@
+//@hostBinding, no elemento host vai ganhar a classe show, vai fazer class.show, ou seja, no conjunto de classes dele ele vai ganhar a class.show quando o show for true
+//host é acessado pelo hostBinding, mas n é a melhor maneira
+// :host {
+//     transition: 1s;
+//     opacity: 0;
+//     &.show {
+//         opacity: 1;  
+//     }
+// }
+
+.modal-overlay {
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    .modal-content {
+        padding: 0 2rem 2rem 2rem;
+        margin: 2%;
+        min-width: 94%;//min-width:, o tamanho mínimo dele, quando é mobile, que é o padrão, estou fazendo o mobile forced, o min-width dele vai ser 94%
+        @media(min-width: 600px) {//@media(min-width: 600px) se for 600px, ou seja, de 600 para cima vai ser diferente, de 600 para cima vai ser um min-width: 60%
+            min-width: 60%; //tela menor eu quero o tamanho mínimo maior, tela menor eu quero o tamanho mínimo menor
+        }
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.25);
+        background-color: white;
+        .modal-title {
+            border-bottom: solid 1px;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+    }
+}

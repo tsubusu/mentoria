@@ -1,5 +1,26 @@
-<div class="modal-overlay">
-    <div class="modal-content">
+<!--
+    Se eu clicar dentro do conteúdo, ele fecha também. Não pode, ele só pode fechar se eu clicar no overlay, não pode fechar se eu clicar dentro do conteúdo.
+    Então como é que podemos resolver isso? Uma maneira de resolver isso, é eu chegar no meu código, quando eu tiver qualquer click que chegar... Eu posso clicar em qualquer elemento dentro de modal.content, mas quando esse elemento, baseado no java script, o evento de bubbling, ele vai subindo, se eu clico no meu h1, ele pergunta para o pai dele, “Você também está preparado para lidar com click?” aí se esse pai não está ou está, ele vai executar o código.
+    Aí desse evento que disparou para o click, ele vai para o próximo pai dessa tag e pergunta, “você está preparado para lidar com click?” aí vai subindo até chegar no body e estourar fora do DOM. 
+    Então o que eu vou fazer? Se você clicar em qualquer coisa, quando esse evento click chegar no meu modal.content, eu vou fazer $eventstopPropagation
+-->
+
+<!-- 
+    Acessibilidade
+    role="dialog" -> identifica que é uma modal
+    [attr.aria-label] -> dessa div vai ser o config-title que é o mesmo que está sendo usado no meu h1
+    aria-modal ->  Quando você coloca esse atributo, os text readers vão ser inteligentes o suficiente para entender que eu só devo focar o conteúdo que está dentro desse modal, o que está fora eu devo ignorar
+-->
+<div class="modal-overlay" 
+    (click)="modalRef.close()"
+    (keydown.esc)="modalRef.close()">
+    <div class="modal-content" 
+        appFocusTrap 
+        appFocusBack
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="modalConfig.title"
+        (click)="$event.stopPropagation()"> <!-- O $event.stopPropagation() não emit para as camadas superiores os event de click nesse exemplo -->
         <h1 class="modal-title"> {{ modalConfig.title }} </h1>
         <!-- conteudo do modal. template q quero exibir -->
 
@@ -12,3 +33,12 @@
         
     </div>
 </div>
+
+<!-- 
+    Usar as animations de forma 'normal'
+    E como o *ngIf adiciona o elemento no DOM e remove o elemento no DOM, o meu fade vai ser aplicado. Aliás, de novo, eu vou fazer um exemplo usando essa animação com *ngIf lá na frente, para ser um bônus para nós. Mas o mais importante agora é que eu quero adicionar o fade no meu host element. E para fazer isso, eu vou ter que usar o meu @HostBinding e dentro dele eu vou dizer que para a propriedade @fade eu vou ter um fade = true
+
+    <div [@fade]="active" *ngIf="true" >
+
+    </div>
+-->

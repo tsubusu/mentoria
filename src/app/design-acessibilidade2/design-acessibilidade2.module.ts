@@ -7,7 +7,6 @@ import { ModalModule } from '@shared/modal/modal.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/module/shared.module';
 
-
 @NgModule({
   declarations: [
     DesignAcessibilidade2Component
@@ -17,7 +16,7 @@ import { SharedModule } from '../shared/module/shared.module';
     DesignAcessibilidade2RoutingModule,
     ModalModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class DesignAcessibilidade2Module { }

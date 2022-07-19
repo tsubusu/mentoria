@@ -21,6 +21,7 @@ export class ModalService {
   */
   private componentFactory!: ComponentFactory<ModalComponent>;
 
+  //private BodyInjector: BodyInjectorService. O que eu vou fazer aqui? Antes de eu retornar o meu ModalRef, eu vou fazer this.bodyInjector.stackBeforeAppRoot(componentRef)
   constructor(componentFactoryResolver: ComponentFactoryResolver,
       private injector: Injector,
       private bodyInjectorService: BodyInjectorService
@@ -40,11 +41,19 @@ export class ModalService {
     console.log(componentRef.instance);
     console.log('open called');
 
+    // Então antes de eu retornar a minha referência do modal, eu estou pegando esse componentRef que foi criado e vou adicionar antes de app-root. Eu vou voltar para o nosso método app-root e esse componentRef de alguma maneira que vamos ver
+    //nó do DOM que eu vou adicionar antes de app-root utilizando uma sintaxe de java script padrão com querySelector InsertBefore
     this.bodyInjectorService.stackBeforeAppRoot(componentRef);
 
     //Sabemos que o componentRef é um wraper, que dentro dele tem um ModalComponent. Então é verdade que a propriedade instance é a instância de ModalComponent. E através de componentRef.destroy que eu destruo esse componente. Se esse componente estiver na view, a view é destruída junto com ele
     //Então o que está faltando eu fazer agora? É passar o meu componentRef no construtor do meu modal
-    return new ModalRef(componentRef);
+    const modalRef = new ModalRef(componentRef);
+
+    //Lembrando que componentRef é a instancia do component de MODAL COMPONENT, assim ele pode acessar seus metodos e variaveis publicas
+    //Assim podendo injetar a instancia de modalRef que é necessario para fechar a tela do modal.
+    componentRef.instance.modalRef = modalRef;
+
+    return modalRef;
   }
 
   private createComponentRef(): ComponentRef<ModalComponent> {
@@ -64,6 +73,7 @@ export interface ModalConfig {
   title: string;
 }
 
+//ModalRef deveria ser desacoplada do serviço já que ele esta sendo usado aqui na service quanto dentro do modalComponent 
 export class ModalRef {
   //vou ter o meu construtor e agora na hora que eu chamar o close, quem eu vou chamar? Pedir para fechar o meu modal, destruir? É o componentRef que eu passei como parâmetro. Por isso que o nosso ModalRef era importante
   constructor(private componentRef: ComponentRef<ModalComponent>) {
