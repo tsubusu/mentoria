@@ -22,6 +22,9 @@ const routes: Routes = [
   {
     path:'animais', loadChildren: () => import('./animais/animais.module').then((m) => m.AnimaisModule),
     canLoad: [AutenticacaoGuard]
+  },
+  {
+    path:'jasmine-karma', loadChildren: () => import('./jasmine-karma/jasmine-karma.module').then((m) => m.JasmineKarmaModule) 
   }
 ];
 

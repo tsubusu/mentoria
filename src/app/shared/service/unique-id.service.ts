@@ -10,12 +10,26 @@ import * as uuid from 'uuid';
 
 @Injectable({ providedIn: 'root' })
 export class UniqueIdService {
+  //saber quantos ids foram gerados
+  private numberOfGereneratedIDs = 0;
+  // começa com letra maiúscula ou minúscula, e se é seguido de hífen e depois vem qualquer outra coisa depois desse hífen, pode ser número que vem depois de hífen, pode ser letra, não importa
+  private validID = /^[A-Za-z]+[\w\-\:\.]*$/;
 
   constructor() { }
 
   public generateUniqueIDWithPrefix(prefix: string): string {
+    //if (!prefix) { //e o prefixo que você passou, não tem prefixo, eu vou fazer uma coisa que chamamos de fail fast, eu vou falhar rápido com uma mensagem para o desenvolvedor dizendo que throw Error(‘Prefix can not be empty’);
+    if (!prefix || !this.validID.test(prefix)) {
+      throw Error('Prefix can not empty');
+    }
+
     const uniqueID = this.generateUniqueID();
+    this.numberOfGereneratedIDs++;
     return `${prefix}-${uniqueID}`;
+  }
+
+  public getNumberOfGeneratedUniqueIDs(): number {
+    return this.numberOfGereneratedIDs;
   }
 
   private generateUniqueID(): string {
