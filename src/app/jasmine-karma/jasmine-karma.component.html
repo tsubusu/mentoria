@@ -2,7 +2,95 @@
 <p>O que esse cara faz? O mais importante agora para entendermos aqui o Karma é que ele é o agnóstico de framework de testes, você pode usar o Karma com Jasmines, você pode usar o Karma com Mocha, QUnit, ele vai rodar o seu teste independente da tecnologia de teste que você está utilizando do framework.</p>
 <p>Por padrão o Angular CLI, ele vem com o Jasmine, nada te impede de no futuro você queira trocar o Jasmine por um outro framework, mas eu vou usar tudo que já vem pronto do Angular, ou seja, vou escrever mais testes em Jasmine, vou executar meus testes em Jasmine</p>
 
+<br/>
+
 <p>“karma.conf.js” é a configuração do Karma</p>
 <p> o Karma já vem configurado por padrão para usar Jasmine</p>
 
+<br/>
+
 <p>para executar os testes => npm run test</p>
+
+<br/>
+
+<p>
+    Para adicionar um novo browser aos testes
+    Vou instalar esse cara aqui ' npm install -D karma-firefox-launcher ' D maiúsculo indica que é uma development, é um modo de desenvolvimento, isso significa que ele não vai ficar nas bibliotecas de runtime da aplicação, mas ele vai ficar nas bibliotecas que são utilizadas em ambiente de desenvolvimento.
+    Copiar o karma-firefox-launcher que foi adicionado ao package.json
+    e adicionar ao Karma.config.js
+
+    adicionar no package.json abaixo de test "test-common": "ng test --browsers Chrome,Firefox"
+    Ao fazer desta maneira n é necessario fazer o passo citado acima, pois o padrão só abrirá o google chrome.
+
+    Para o safari -> npm install karma-safari-launcher --save-dev
+    Se configurado assim "test-safari": "ng test --browsers Safari"
+</p>
+
+<br/>
+
+<p>
+    Versão headless. O que significa? É uma versão que roda em memória sem a parte gráfica, que o usuário interage.
+    Primeiro, essa forma headless, ela consome menos memória, porque essa versão não tem que renderizar os componentes na tela, mas o mais importante é que ela se comporta exatamente igual a um browser no qual você estaria rodando, igual o que fazemos aqui, rodar o Karma no navegador
+    Então o que precisamos saber agora é como é que eu ativo esse tal de versão headless do meu browser. Primeira coisa que eu vou te falar é o seguinte, internet Explorer e Safari, não possuem versão headless, o Internet Explorer, nunca vai suportar, o Safari vai depender da Apple, mas eles não suportam a versão headless, pode ser que isso mude no futuro.
+    
+    ”test-ci”: de continuous integration, esse cara ele vai chamar o ng test –browsers e que eu vou passar aqui é um cara chamado ChromeHeadless, muito cuidado na hora de você escrever esse cara, tem que estar exatamente igual aqui, vou até testar, aqui ChromeHeadless.
+    Então não queremos ativar o recurso de watch queremos que esse cara execute uma vez e pare, como fazemos isso? Vamos chegar lá no nosso projeto, aqui no nosso novo script, vou botar a opção --watch=false que vai receber o valor false
+    É necesario adicionar ao package.json na parte de scripts
+    "test-ci": "ng test --watch=false --browsers ChromeHeadless"
+    para rodar =>  npm run test-ci
+</p>
+
+<br/>
+
+<p>
+    Criando customLaunchers no Karma.config.js
+    O que que é um custom launcher? É um lançador de browser customizado onde você pode passar parâmetros de configuração para o browser antes de ele ser executado.
+    Você pode querer sobrescrever um launcher já existente, passando parâmetros para o browser
+    Eu vou criar um customLauncher é essa propriedade aqui, qual é o nome dele, o nome que você quer chamar no script? Olha, FirefoxSemCabeca vai ser o nome desse cara. Qual é o base, qual é o browser que você vai chamar? É o script do base: ’Firefox’, e você quer passar alguma flag para ele, é a flags:[] e aqui que que eu vou passar para ele é a ’-headless’
+    Eu criei um customLaunchers chamado FirefoxSemCabeca que é baseado no Firefox, que quando o Firefox for chamado, ele vai passar esse parâmetro -headless como o parâmetro do browser.
+    customLaunchers:
+    É necessario adicionar ao package.json "test-ci": "ng test --watch=false --browsers ChromeHeadless,FirefoxSemCabeca"
+</p>
+
+<br/>
+
+<p>
+    integração contínua
+    se você está rodando o seu teste de Angular no servidor de integração contínua, você tem que gerar algum report para que esse servidor de integração continue intérprete, e saiba se o seu teste passou ou não passou, ou se houve algum tipo de problema.
+    Por padrão o Karma não vem com isso não, o mais famoso, o mais utilizado que a galera costuma utilizar, para gerar esse report, é o karma-junit repórter, então vamos instalar esse cara e vamos ver o que que acontece quando esse reporter faz parte da nossa configuração do Karma
+    npm install karma-junit-reporter --save-dev
+    Isso vai ser um plugin do Karma então você já deve estar associado que toda vez que instalamos um plugin o Karma não fez curso mãe Diná para instalar o plugin automaticamente, precisamos registrá-lo.
+    Dentro do karma.config.ts adicionar o require('karma-junit-reporter'),
+    após isso ir para o package.json e adicionar ao test-ci --reporters junit
+    "test-ci": "ng test --watch=false --reporters junit --browsers ChromeHeadless,FirefoxSemCabeca"
+    Ao executar o npm run test-ci ele cria o arquivo TESTS-Chrome_Headless_103.0.5060.134_(Windows_10)
+</p>
+
+<br/>
+
+<p>
+    Teste Coverage
+    É necessario adicionar ao Karma.config.json o require('karma-coverage'),
+    Vou voltar lá no “package.json”, vou criar um novo script que eu vou chamar de ”test-coverage” o que que esse teste coverage ele vai fazer?
+    Ele vai rodar o meu ”ng test também com -watch=false que eu quero que ele rode uma única vez, vou pedir para ele gerar com --sourceMap=true” que eu preciso do código, o sistema compila o módulo de typescript para JavaScript
+    Mas eu preciso ter o sourceMap para saber depois que aquele script estiver todo minificado, todo embaralhado, saber onde é que dá nome aos bois, saber qual método não tem a cobertura, e para isso eu preciso ter o sourceMap para saber qual é o correspondente original daquele código que foi minificado. Então estou gerando sourceMap=true, deixa eu diminuir aqui
+    Segundo parâmetro que vou passar é o --codeCoverage=true e qual é o browsers que eu vou rodar? Como é só para testar o ”test-coverage”, eu vou botar o ChromeHeadless”, vou deixar parado aqui, enquanto vocês vão digitando vou verificando se eu não fiz nada de errado, é ”test-coverage”: “ng test --watch faltou um menos no watch =false –sourceMap=true –codeCoverage=true –browsers ChromeHeadless”
+    "test-coverage": "ng test --source-map=true  --code-coverage=true --watch=false --browsers ChromeHeadless"
+    npm run test-coverage
+
+    Quando ficar linhas a serem cobertas pelos testes como saber onde que estavam faltando, onde que eu deixei de fazer a cobertura? Esse relatório não está me servindo de nada, ele só está me dando uma visão geral. Para um servidor de CI/CD que pode testar se você não está acima de um determinado número de coberturas, não deixar você fazer o deploy da sua aplicação
+    =============================== Coverage summary ===============================
+    Statements   : 29.72% ( 110/370 )
+    Branches     : 16.94% ( 10/59 )
+    Functions    : 6.74% ( 11/163 )
+    Lines        : 21.34% ( 70/328 )
+
+    Então a grande sacada é o seguinte, se olhamos aqui nos arquivos do nosso projeto, na hora que esse coverage summary é gerado, ele gera também aqui em uma pasta do projeto o report que podemos abrir e verificar, se você olhar aqui tem um HTML
+    Eu vou abrir aqui o meu projeto na pasta de arquivo, vou dentro do coverage dentro desse meu projeto vou abrir esse “index.html”, deixa eu abrir aqui em separado, botar aqui, quando eu abro esse cara no navegador você vai ver que esse teste coverage
+
+</p>
+
+
+<br/>
+
+<app-like-widget [likes]="likes" (liked)="like()"></app-like-widget>

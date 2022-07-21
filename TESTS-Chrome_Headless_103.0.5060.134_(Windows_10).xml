@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 103.0.5060.134 (Windows 10)" package="" timestamp="2022-07-21T01:55:01" id="0" hostname="DESKTOP-8V7GQKG" tests="49" errors="0" failures="0" time="0.062">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/103.0.5060.134 Safari/537.36"/>
+  </properties>
+  <testcase name="LikeWidgetComponent #grita shoud return true when called" time="0.033" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent Should NOT auto-generate ID during ngOnInit when (@Input id) is assigned" time="0.007" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent #like&#xA;  should trigger (@Output liked) when called" time="0.005" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent #like&#xA;  should trigger emission when called" time="0.003" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent Should auto-generate ID during ngOnInit when (@Input id) is not assigned" time="0.003" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="LikeWidgetComponent Should create component" time="0.002" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LikeWidgetComponent"/>
+  <testcase name="DisableControlDirective should create an instance" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).DisableControlDirective"/>
+  <testcase name="ModalService should be created" time="0.001" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ModalService"/>
+  <testcase name="UniqueIdService #generateUniqueIDWithPrefix &#xA;  should throw when called with empty" time="0.002" classname="Chrome_Headless_103_0_5060_134_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #getNumberOfGeneratedUniqueIDs &#xA;  should return the number of generatedIDs when called" time="0.001" classname="Chrome_Headless_103_0_5060_134_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #generateUniqueIDWithPrefix &#xA;  should generate id when called with prefix" time="0.002" classname="Chrome_Headless_103_0_5060_134_(Windows_10).UniqueIdService"/>
+  <testcase name="UniqueIdService #generateUniqueIDWithPrefix &#xA;  should not generate duplicate ids when called multiple times" time="0.003" classname="Chrome_Headless_103_0_5060_134_(Windows_10).UniqueIdService"/>
+  <testcase name="JasmineKarmaComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).JasmineKarmaComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="NovoAnimalComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).NovoAnimalComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="DesignAcessibilidade2Component should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).DesignAcessibilidade2Component">
+    <skipped/>
+  </testcase>
+  <testcase name="NovoUsuarioService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).NovoUsuarioService">
+    <skipped/>
+  </testcase>
+  <testcase name="ListaAnimaisResolver should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ListaAnimaisResolver">
+    <skipped/>
+  </testcase>
+  <testcase name="MenuComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).MenuComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="RodapeComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).RodapeComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="ComentarioService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ComentarioService">
+    <skipped/>
+  </testcase>
+  <testcase name="NovoUsuarioComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).NovoUsuarioComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AnimaisService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AnimaisService">
+    <skipped/>
+  </testcase>
+  <testcase name="BodyInjectorService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).BodyInjectorService">
+    <skipped/>
+  </testcase>
+  <testcase name="AppComponent should create the app" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AppComponent should have as title 'mentoria'" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AppComponent should render title" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="ModalComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ModalComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AutenticacaoGuard should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AutenticacaoGuard">
+    <skipped/>
+  </testcase>
+  <testcase name="KeyboardManagerDirective should create an instance" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).KeyboardManagerDirective">
+    <skipped/>
+  </testcase>
+  <testcase name="FocusBackDirective should create an instance" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).FocusBackDirective">
+    <skipped/>
+  </testcase>
+  <testcase name="ComentariosComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ComentariosComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="LoginGuard should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LoginGuard">
+    <skipped/>
+  </testcase>
+  <testcase name="AnimalComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AnimalComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="HomeComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).HomeComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="CartaoComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).CartaoComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="DetalheAnimalComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).DetalheAnimalComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="YesNoRadioButtonGroupComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).YesNoRadioButtonGroupComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="InputComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).InputComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="TokenService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).TokenService">
+    <skipped/>
+  </testcase>
+  <testcase name="YesNoButtonGroupComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).YesNoButtonGroupComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AutenticacaoInterceptor should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AutenticacaoInterceptor">
+    <skipped/>
+  </testcase>
+  <testcase name="MensagemComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).MensagemComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="ListaAnimaisComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).ListaAnimaisComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="UsuarioService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).UsuarioService">
+    <skipped/>
+  </testcase>
+  <testcase name="LoginComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).LoginComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="GradeFotoAnimaisComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).GradeFotoAnimaisComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="CabecalhoComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).CabecalhoComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AutenticacaoService should be created" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).AutenticacaoService">
+    <skipped/>
+  </testcase>
+  <testcase name="DesignAcessibilidadeComponent should create" time="0" classname="Chrome_Headless_103_0_5060_134_(Windows_10).DesignAcessibilidadeComponent">
+    <skipped/>
+  </testcase>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

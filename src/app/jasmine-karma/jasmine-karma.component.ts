@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jasmine-karma.component.scss']
 })
 export class JasmineKarmaComponent implements OnInit {
+  public likes = 0;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+  public like(): void {
+    this.likes++;
+  }
 }

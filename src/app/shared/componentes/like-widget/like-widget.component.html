@@ -1,0 +1,32 @@
+<!--
+    Acessibilidade
+    tabindex=”0” eu torno um elemento que não é acessível, através do teclado faço ele ser acessível.
+    Quero que ele haja como um botão, então é por isso que eu vou dar aqui o papel para ele, a role=”button”
+    aria-label, primeiro um ID nesse cara, eu vou dizer que o ID dele, [attr.id=”id”] é igual ao ID que geramos dinamicamente
+    [attr.aria-label]=, eu não quero que o label seja só o número de likes, eu quero que seja esse texto aqui, ”likes + vou concatenar com dois pontos ’: people liked’”
+    aria-label o que vai ser anunciado pelo screen reader é o número de likes, tipo, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, não, quero dizer zero people liked, two people liked, e por aí vai
+    aria-live = ”true” significa toda hora que o conteúdo dessa tag mudar o screen reader vai ser inteligente o suficiente para falar, anunciar um novo valor, e queremos isso, porque toda vez que eu clicar eu vou trocar esse número para 1, 2, 3
+    aria-atomic=”true” para fazer com que o screen reader leia tudo que está dentro da minha tag span
+    O atributo aria-live é utilizado quando mudamos o conteúdo de algum elemento dinamicamente e queremos que o novo valor seja anunciado através de screen readers. Já o atributo aria-atomic indica para o screen reader se ele deve anunciar apenas o conteúdo que mudou dinamicamente de uma live area ou se deve anunciar todo o conteúdo.
+    [attr.aria-labelledby]="id" vou dizer que esse cara é descrito por um elemento com esse ID , quem é que tem esse ID aqui? A minha span, então quando você usa o aria, dá “Tab” em cima do botão, vai dizer que é um button, ainda vai dizer que tantos people liked
+-->
+
+<div class="like-widget-container" 
+(click)="like()"
+(keyup.enter)="like()">
+    <fa-icon
+    role="button"
+    tabindex="0"
+    [attr.aria-labelledby]="id"
+    size="1x"
+    [icon]="fonts.faThumbsUp">
+    </fa-icon>
+    <span 
+    [attr.id]="id"
+    [attr.aria-label]="likes + ': people liked'"
+    aria-live="true"
+    aria-atomic="true"
+    class="like-counter">
+        {{ likes }}
+    </span>
+</div>
