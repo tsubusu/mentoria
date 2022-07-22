@@ -93,4 +93,33 @@ fdescribe('LikeWidgetComponent', () => {
     //criar o teste primeiro para dps criar o metodo dentro do component
     expect(component.grita()).toBeTruthy();
   });
+
+  //Exemplo teste integração com o DOM 
+  it(' (D) Shoud display number of likes when clicked', done => {
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent?.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainer: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    likeWidgetContainer.click();
+  });
+
+  //Exemplo teste integração com o DOM 
+  it(' (D) Shoud display number of likes when Enter key is pressed', done => {
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent?.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainer: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    const event = new KeyboardEvent('keyup', { key: 'Enter' }); //é um evento específico de quando você está trabalhando com keyboard
+    likeWidgetContainer.dispatchEvent(event); //Não existe um método chamado key press F diferente do click, do blur, isso tudo, então o que queremos fazer agora é despachar um evento
+  });
 });

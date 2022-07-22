@@ -9,7 +9,9 @@
     "test": "ng test",
     "teste-common": "ng test --browsers Chrome,Firefox",
     "test-ci": "ng test --watch=false --reporters junit --browsers ChromeHeadless,FirefoxSemCabeca",
-    "test-coverage": "ng test --source-map=true  --code-coverage=true --watch=false --browsers ChromeHeadless"
+    "test-coverage": "ng test --source-map=true  --code-coverage=true --watch=false --browsers ChromeHeadless",
+    "api": "node ./server/server.js",
+    "all": "concurrently --kill-others \"npm run api\" \"npm run start\""
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,8 @@
     "@fortawesome/angular-fontawesome": "^0.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "concurrently": "^7.3.0",
+    "datauri": "^4.1.0",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "rxjs": "~7.5.0",

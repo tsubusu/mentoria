@@ -11,9 +11,15 @@
     [attr.aria-labelledby]="id" vou dizer que esse cara é descrito por um elemento com esse ID , quem é que tem esse ID aqui? A minha span, então quando você usa o aria, dá “Tab” em cima do botão, vai dizer que é um button, ainda vai dizer que tantos people liked
 -->
 
+<!-- 
+    como era antes de suar a directiva appAction
+    <div class="like-widget-container" 
+    (click)="like()"
+    (keyup.enter)="like()"
+-->
 <div class="like-widget-container" 
-(click)="like()"
-(keyup.enter)="like()">
+    (appAction)="like()"
+    >
     <fa-icon
     role="button"
     tabindex="0"

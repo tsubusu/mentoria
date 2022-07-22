@@ -25,6 +25,9 @@ const routes: Routes = [
   },
   {
     path:'jasmine-karma', loadChildren: () => import('./jasmine-karma/jasmine-karma.module').then((m) => m.JasmineKarmaModule) 
+  },
+  {
+    path:'jasmine-karma2', loadChildren: () => import('./jasmine-karma2/jasmine-karma2.module').then((m) => m.JasmineKarma2Module) 
   }
 ];
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LikeWidgetComponent } from './like-widget.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ActionModule } from '@shared/directive/action/action.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ActionModule
   ],
   exports: [
     LikeWidgetComponent
