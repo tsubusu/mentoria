@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { JasmineKarma2RoutingModule } from './jasmine-karma2-routing.module';
 import { JasmineKarma2Component } from './jasmine-karma2.component';
 import { PhotoFrameModule } from '@shared/componentes/photo-frame/photo-frame.module';
+import { PhotoBoardModule } from '@shared/componentes/photo-board/photo-board.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { PhotoFrameModule } from '@shared/componentes/photo-frame/photo-frame.mo
   imports: [
     CommonModule,
     JasmineKarma2RoutingModule,
-    PhotoFrameModule
+    PhotoFrameModule,
+    PhotoBoardModule,
+    FontAwesomeModule
   ]
 })
 export class JasmineKarma2Module { }

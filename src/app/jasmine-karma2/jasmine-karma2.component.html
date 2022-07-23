@@ -1,10 +1,40 @@
 <p>
-    Para executar a api e o front => npm run
+    Para executar a api e o front => npm run all
 </p>
 <br>
+
+<!-- 
+    https://stackoverflow.com/questions/61780339/angular-ivy-stricttemplates-true-type-boolean-null-is-not-assignable-to-type
+    You can do what you've done and allow null, or if you know it will never be null, use a non null assertion operator:
+    [loaded]="(loaded$ | async)!"
+    or disable type checking here:
+    [loaded]="$any(loaded$ | async)"
+    or for this particular case you could probably do something like this:
+    [loaded]="(loaded$ | async) || false"
+-->
 <app-photo-frame 
     [likes]="likes"
     (liked)="like()"
     description="Some description" 
     src="https://picsum.photos/200/300">
 </app-photo-frame>
+<br>
+<app-photo-board
+    *ngIf="(photos$ | async) as photos; else loader"
+    [photos]="photos">
+</app-photo-board>
+
+<!-- 
+    [spin]="true" = girar o icone
+    aria-busy="true" -> acessibilidade, avisar que esta area esta ocupada
+-->
+<ng-template #loader>
+    <div class="loader">
+        <fa-icon
+        aria-busy="true"
+        size="4x"
+        [spin]="true"
+        [icon]="fa.faCircleNotch">
+        </fa-icon>
+    </div>
+</ng-template>

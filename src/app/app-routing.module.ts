@@ -28,6 +28,9 @@ const routes: Routes = [
   },
   {
     path:'jasmine-karma2', loadChildren: () => import('./jasmine-karma2/jasmine-karma2.module').then((m) => m.JasmineKarma2Module) 
+  },
+  {
+    path:'**', redirectTo: 'home'
   }
 ];
 
